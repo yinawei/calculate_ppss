@@ -9,7 +9,8 @@ This repository provides the code to calculating predicted post-synaptic sites (
  * numpy==1.26.2
  * SimpleITK==2.5.3 
 
-# Quick start   
+# Quick start 
+First unzip connection.json.zip in the data folder before running the code. 
 ```bash
 # Create a new environment
 conda create -n ppss python=3.9.20
