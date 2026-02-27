@@ -40,4 +40,4 @@ python calculate_branch_distance.py
 ```
 
 ## Reference
-Yina Wei, Yuze Liu, Feng Xiong, Fuhui Long, Hanchuan Peng, Brain-wide Organization of Post-Synaptic Sites: Three Principles, bioRxiv, 2026
+Yina Wei, Yuze Liu, Feng Xiong, Fuhui Long, Hanchuan Peng*, Brain-wide Organization of Post-Synaptic Sites: Three Principles, bioRxiv, 2026
