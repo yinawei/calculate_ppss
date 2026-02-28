@@ -9,8 +9,15 @@ This repository provides the code to calculating predicted post-synaptic sites (
  * numpy==1.26.2
  * SimpleITK==2.5.3 
 
-# Quick start 
-First unzip connection.json.zip in the data folder before running the code. 
+## Prepare the data
+Extract all compressed files in the data folder before running the code. 
+```bash
+cd data
+unzip connection.json.zip 
+cd ..
+```
+
+## Prepare the python enviroment and calcuate PPSS
 ```bash
 # Create a new environment
 conda create -n ppss python=3.9.20
@@ -38,6 +45,5 @@ python calculate_branch_level.py
 python calculate_branch_distance.py
 
 ```
-
 ## Reference
 Yina Wei, Yuze Liu, Feng Xiong, Fuhui Long, Hanchuan Peng*, Brain-wide Organization of Post-Synaptic Sites: Three Principles, bioRxiv, 2026
