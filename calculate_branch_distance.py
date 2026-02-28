@@ -175,7 +175,7 @@ if __name__ == "__main__":
     groups = dict(tuple(df.groupby('target_cell')))
     args_list = [(i, groups[i]) for i in swc_list]
     
-    n_jobs = 50
+    n_jobs = 10
     with Pool(n_jobs) as pool:
         tmp_long_list = list(
             tqdm(pool.imap(one_cell, args_list),
@@ -184,3 +184,4 @@ if __name__ == "__main__":
     
     long_df = pd.concat(tmp_long_list, ignore_index=True)
     long_df.to_csv('./output/ppss_from_pacs_within_segments_branch_order_summary.csv', index=False)
+
