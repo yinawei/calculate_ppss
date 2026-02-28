@@ -96,17 +96,18 @@ def add_region_info(meta_file='./output/ppss_table_pac.csv',
 
 if __name__ == "__main__":
     # get ppss based on axon arbors
-    get_ppss_table_multi(n_jobs=50, dest='./results/results_pac',
+    get_ppss_table_multi(n_jobs=10, dest='./results/results_pac',
                          save_path='./output/ppss_table_pac.csv')
 
     add_region_info(meta_file='./output/ppss_table_pac.csv',
                     save_path='./output/ppss_from_pacs.csv')
 
     # get ppss based on axon bouton sites
-    get_ppss_table_multi(n_jobs=50, dest='./results/results_pb',
+    get_ppss_table_multi(n_jobs=10, dest='./results/results_pb',
                          save_path='./output/ppss_table_pb.csv')
 
     add_region_info(meta_file='./output/ppss_table_pb.csv',
                     save_path='./output/ppss_from_boutons.csv')
+
 
 
