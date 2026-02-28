@@ -91,7 +91,7 @@ if __name__ == "__main__":
     log_path = './log/log_pac'
     json_path = "./data/connection.json"
 
-    cores = 50  # int(multiprocessing.cpu_count() * 0.8)  # multiprocessing.cpu_count()
+    cores = 10  # int(multiprocessing.cpu_count() * 0.8)  # multiprocessing.cpu_count()
     print("cores: ", cores)
 
     os.makedirs(dest, exist_ok=True)
@@ -128,3 +128,4 @@ if __name__ == "__main__":
             continue
 
         os.makedirs(os.path.join(log_path, swc_i), exist_ok=True)
+
