@@ -41,7 +41,7 @@ if __name__ == '__main__':
 
     print(anno.shape)
     
-    n_workers = 10
+    n_workers = 50
     files = list(den_features['swc_id'])
 
     idxlist, balist = [], []
@@ -59,4 +59,3 @@ if __name__ == '__main__':
             balist.append(lutidtoname.get(ba, ba))
 
     pd.DataFrame(np.array([balist]).T,index=idxlist,columns=['CellType']).to_csv('./output/mouse_celltype.csv')
-

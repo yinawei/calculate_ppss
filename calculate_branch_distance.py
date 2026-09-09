@@ -69,10 +69,10 @@ def func(tmp_branch_index, tmp_swc, tmp_den_id):
 
 def _worker(ppss_data):
     # use complete neuron dendrite morphology data
-    # den_path = './data/155k_den_1um/1um/SEU-ALLEN_local_SWC_CCFv3'
+    den_path = './data/155k_den_1um/1um/SEU-ALLEN_local_SWC_CCFv3'
 
     # use example neuron dendrite morphology data
-    den_path = './data/dendrite_example'
+    #den_path = './data/dendrite_example'
 
     try:
         target_cell = ppss_data[-1]
@@ -127,16 +127,30 @@ def get_ppss_table_multi(n_jobs=None):
 
     n_jobs = n_jobs or cpu_count()
     with Pool(n_jobs) as pool:
-        buf = list(tqdm(
+        buf = []
+        first_chunk = True
+        for i, chunk in enumerate(tqdm(
             pool.imap(_worker, results),
             total=len(results),
             desc='PPSS'
-        ))
+        )):
+            buf.append(chunk)
+            if len(buf) >= 1000:
+                pd.concat(buf, ignore_index=True).to_csv(
+                    './output/ppss_detail_table.csv',
+                    mode='a', header=first_chunk, index=False
+                )
+                first_chunk=False
+                buf = []
 
-    all_n = pd.concat(buf, ignore_index=True) \
-             .sort_values(['source_cell', 'target_cell']) \
-             .reset_index(drop=True)
+        if buf:
+            pd.concat(buf, ignore_index=True).to_csv(
+                './output/ppss_detail_table.csv',
+                mode='a', header=first_chunk, index=False
+            )
 
+    all_n = pd.read_csv('./output/ppss_detail_table.csv')
+    all_n = all_n.sort_values(['source_cell', 'target_cell']).reset_index(drop=True)
     all_n.to_csv('./output/ppss_detail_table.csv', index=True)
     return all_n
 
@@ -175,7 +189,7 @@ if __name__ == "__main__":
     groups = dict(tuple(df.groupby('target_cell')))
     args_list = [(i, groups[i]) for i in swc_list]
     
-    n_jobs = 10
+    n_jobs = 50
     with Pool(n_jobs) as pool:
         tmp_long_list = list(
             tqdm(pool.imap(one_cell, args_list),
@@ -184,4 +198,3 @@ if __name__ == "__main__":
     
     long_df = pd.concat(tmp_long_list, ignore_index=True)
     long_df.to_csv('./output/ppss_from_pacs_within_segments_branch_order_summary.csv', index=False)
-

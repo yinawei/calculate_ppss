@@ -29,7 +29,7 @@ os.makedirs(dendrite_dst_dir, exist_ok=True)
 with open(json_path, 'r', encoding='utf-8') as f:
     data = json.load(f)
 
-axon_items = random.sample(list(data.items()), 10)
+axon_items = random.sample(list(data.items()), 30)
 
 def find_file(filename, search_dirs, extensions=['.swc', '.eswc']):
     base_name = filename
@@ -74,7 +74,7 @@ for axon_id, dendrite_dict in axon_items:
             print(f"not find {dendrite_id}")
 
 files = os.listdir(axon_bouton_src_dirs[0])
-files_ = random.sample(files, 10)
+files_ = random.sample(files, 30)
 axon_items = [(i.split('.')[0], data[i.split('.')[0]]) for i in files_]
 
 for axon_id, dendrite_dict in axon_items:
